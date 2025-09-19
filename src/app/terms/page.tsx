@@ -91,7 +91,7 @@ export default function TermsPage() {
             <section className="bg-gray-800 rounded-lg p-6 border border-gray-700">
               <h3 className="text-xl font-semibold text-white mb-3">Limitation of Liability</h3>
               <p className="text-gray-300">
-                CFO Helper is provided "as is" without warranties. We are not liable for any 
+                CFO Helper is provided &quot;as is&quot; without warranties. We are not liable for any 
                 business decisions made based on our AI recommendations or for any indirect, 
                 incidental, or consequential damages.
               </p>

@@ -85,7 +85,7 @@ export default function ContactPage() {
             <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
               <h3 className="text-xl font-semibold text-white mb-4">Enterprise Sales</h3>
               <p className="text-gray-300 mb-4">
-                Ready to transform your financial planning? Let's discuss custom solutions for your organization.
+                Ready to transform your financial planning? Let&apos;s discuss custom solutions for your organization.
               </p>
               <div className="space-y-2">
                 <p className="text-gray-400 text-sm">📧 enterprise@cfohelper.com</p>

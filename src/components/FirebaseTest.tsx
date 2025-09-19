@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { auth, db } from '@/lib/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { auth } from '@/lib/firebase';
 
 export default function FirebaseTest() {
   const [authStatus, setAuthStatus] = useState('Testing Firebase Auth...');
-  const [firestoreStatus, setFirestoreStatus] = useState('Testing Firestore...');
 
   useEffect(() => {
     // Test Firebase Auth
@@ -18,35 +16,10 @@ export default function FirebaseTest() {
       } else {
         setAuthStatus('❌ Firebase Auth not initialized');
       }
-    } catch (error) {
+    } catch (error: any) {
       setAuthStatus(`❌ Firebase Auth Error: ${error}`);
       console.error('Firebase Auth error:', error);
     }
-
-    // Test Firestore
-    const testFirestore = async () => {
-      try {
-        if (db) {
-          // Try to read a test document
-          const testDoc = doc(db, 'test', 'connection');
-          await getDoc(testDoc);
-          setFirestoreStatus('✅ Firestore connected successfully');
-        } else {
-          setFirestoreStatus('❌ Firestore not initialized');
-        }
-      } catch (error: any) {
-        if (error.code === 'unavailable') {
-          setFirestoreStatus('❌ Firestore: Database not created or offline');
-        } else if (error.code === 'permission-denied') {
-          setFirestoreStatus('⚠️ Firestore: Connected but permission denied (normal for test doc)');
-        } else {
-          setFirestoreStatus(`❌ Firestore Error: ${error.message}`);
-        }
-        console.error('Firestore error:', error);
-      }
-    };
-
-    testFirestore();
   }, []);
 
   return (
@@ -54,7 +27,6 @@ export default function FirebaseTest() {
       <h3 className="font-bold mb-2">Firebase Connection Test</h3>
       <div className="space-y-1 text-sm">
         <p>{authStatus}</p>
-        <p>{firestoreStatus}</p>
       </div>
     </div>
   );

@@ -56,9 +56,9 @@ export default function SignupPage() {
         company: formData.company
       });
       router.push('/dashboard');
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Signup error:', error);
-      setError(getErrorMessage(error.code));
+      setError(getErrorMessage((error as { code?: string })?.code || 'unknown'));
     } finally {
       setLoading(false);
     }
@@ -71,9 +71,9 @@ export default function SignupPage() {
     try {
       await signInWithGoogle();
       router.push('/dashboard');
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Google sign up error:', error);
-      setError(getErrorMessage(error.code));
+      setError(getErrorMessage((error as { code?: string })?.code || 'unknown'));
     } finally {
       setLoading(false);
     }

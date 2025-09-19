@@ -36,7 +36,7 @@ export default function APIPage() {
           <div className="bg-gray-800 rounded-xl p-8 border border-gray-700">
             <h2 className="text-2xl font-bold text-white mb-4">Enterprise API Access</h2>
             <p className="text-gray-300 mb-6">
-              Embed CFO Helper's powerful financial modeling capabilities directly into your 
+              Embed CFO Helper&apos;s powerful financial modeling capabilities directly into your 
               existing applications and workflows.
             </p>
             <ul className="text-gray-300 space-y-2 mb-6">

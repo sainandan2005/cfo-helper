@@ -4,28 +4,21 @@ import { useState } from 'react';
 import { DashboardHeader } from '@/components/DashboardHeader';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { useAuth } from '@/contexts/AuthContext';
-import Link from 'next/link';
 
 export default function ProfilePage() {
-  const { userProfile, updateUserProfile } = useAuth();
+  const { user } = useAuth();
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: userProfile?.firstName || '',
-    lastName: userProfile?.lastName || '',
-    company: userProfile?.company || '',
-    displayName: userProfile?.displayName || ''
+    displayName: user?.displayName || '',
+    email: user?.email || ''
   });
 
   const handleSave = async () => {
     setLoading(true);
     try {
-      await updateUserProfile({
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        company: formData.company,
-        displayName: `${formData.firstName} ${formData.lastName}`
-      });
+      // For now, just simulate saving
+      console.log('Profile updated:', formData);
       setEditing(false);
     } catch (error) {
       console.error('Error updating profile:', error);
@@ -72,33 +65,17 @@ export default function ProfilePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  First Name
+                  Display Name
                 </label>
                 {editing ? (
                   <input
                     type="text"
-                    value={formData.firstName}
-                    onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                    value={formData.displayName}
+                    onChange={(e) => setFormData({...formData, displayName: e.target.value})}
                     className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 ) : (
-                  <p className="text-white bg-gray-700 px-3 py-2 rounded-lg">{userProfile?.firstName || 'Not set'}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Last Name
-                </label>
-                {editing ? (
-                  <input
-                    type="text"
-                    value={formData.lastName}
-                    onChange={(e) => setFormData({...formData, lastName: e.target.value})}
-                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                ) : (
-                  <p className="text-white bg-gray-700 px-3 py-2 rounded-lg">{userProfile?.lastName || 'Not set'}</p>
+                  <p className="text-white bg-gray-700 px-3 py-2 rounded-lg">{user?.displayName || 'Not set'}</p>
                 )}
               </div>
 
@@ -106,53 +83,38 @@ export default function ProfilePage() {
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   Email
                 </label>
-                <p className="text-gray-400 bg-gray-700 px-3 py-2 rounded-lg">{userProfile?.email}</p>
-                <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
+                <p className="text-white bg-gray-700 px-3 py-2 rounded-lg">{user?.email || 'Not set'}</p>
               </div>
 
-              <div>
+              <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Company
+                  Account Status
                 </label>
-                {editing ? (
-                  <input
-                    type="text"
-                    value={formData.company}
-                    onChange={(e) => setFormData({...formData, company: e.target.value})}
-                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                ) : (
-                  <p className="text-white bg-gray-700 px-3 py-2 rounded-lg">{userProfile?.company || 'Not set'}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Plan
-                </label>
-                <p className="text-white bg-gray-700 px-3 py-2 rounded-lg capitalize">{userProfile?.plan || 'starter'}</p>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Member Since
-                </label>
-                <p className="text-white bg-gray-700 px-3 py-2 rounded-lg">
-                  {userProfile?.createdAt?.toDate?.()?.toLocaleDateString() || 'Recently'}
-                </p>
+                <div className="flex items-center space-x-2">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    Active
+                  </span>
+                  <span className="text-gray-400">Starter Plan</span>
+                </div>
               </div>
             </div>
 
             <div className="mt-8 pt-6 border-t border-gray-700">
-              <Link 
-                href="/dashboard"
-                className="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                Back to Dashboard
-              </Link>
+              <h3 className="text-lg font-semibold text-white mb-4">Account Actions</h3>
+              <div className="space-y-3">
+                <button className="w-full text-left px-4 py-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors">
+                  <div className="font-medium text-white">Change Password</div>
+                  <div className="text-sm text-gray-400">Update your account password</div>
+                </button>
+                <button className="w-full text-left px-4 py-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors">
+                  <div className="font-medium text-white">Export Data</div>
+                  <div className="text-sm text-gray-400">Download your financial data</div>
+                </button>
+                <button className="w-full text-left px-4 py-3 bg-red-900 rounded-lg hover:bg-red-800 transition-colors">
+                  <div className="font-medium text-red-300">Delete Account</div>
+                  <div className="text-sm text-red-400">Permanently delete your account and data</div>
+                </button>
+              </div>
             </div>
           </div>
         </div>

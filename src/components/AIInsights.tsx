@@ -140,7 +140,9 @@ export function AIInsights({ baseline, scenario, forecast }: AIInsightsProps) {
                   <div className="w-5 h-5 bg-emerald-600 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
                     <span className="text-white text-xs font-bold">{index + 1}</span>
                   </div>
-                  <p className="text-gray-300 text-sm leading-relaxed">{recommendation}</p>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    {typeof recommendation === 'string' ? recommendation : recommendation.action}
+                  </p>
                 </div>
               ))}
             </div>

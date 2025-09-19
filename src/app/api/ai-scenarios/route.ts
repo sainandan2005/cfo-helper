@@ -75,7 +75,7 @@ Format as JSON with this structure:
     try {
       const scenarios = JSON.parse(text);
       return NextResponse.json(scenarios);
-    } catch (parseError) {
+    } catch {
       // Fallback if JSON parsing fails
       return NextResponse.json({
         scenarios: [

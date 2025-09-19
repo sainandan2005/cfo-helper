@@ -13,7 +13,7 @@ export function DashboardHeader({ scenarioCount }: DashboardHeaderProps) {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   
-  const { user, userProfile, logout } = useAuth();
+  const { user, logout } = useAuth();
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -34,9 +34,9 @@ export function DashboardHeader({ scenarioCount }: DashboardHeaderProps) {
       .slice(0, 2);
   };
 
-  const displayName = userProfile?.displayName || user?.displayName || 'User';
-  const email = userProfile?.email || user?.email || '';
-  const company = userProfile?.company || 'Company';
+  const displayName = user?.displayName || 'User';
+  const email = user?.email || '';
+  const company = 'Company';
   const avatar = getInitials(displayName);
 
   return (

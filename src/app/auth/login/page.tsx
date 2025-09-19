@@ -25,9 +25,9 @@ export default function LoginPage() {
     try {
       await signIn(email, password);
       router.push('/dashboard');
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Login error:', error);
-      setError(getErrorMessage(error.code));
+      setError(getErrorMessage((error as { code?: string })?.code || 'unknown'));
     } finally {
       setLoading(false);
     }
@@ -40,9 +40,9 @@ export default function LoginPage() {
     try {
       await signInWithGoogle();
       router.push('/dashboard');
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Google sign in error:', error);
-      setError(getErrorMessage(error.code));
+      setError(getErrorMessage((error as { code?: string })?.code || 'unknown'));
     } finally {
       setLoading(false);
     }
@@ -60,9 +60,9 @@ export default function LoginPage() {
     try {
       await resetPassword(email);
       setShowForgotPassword(true);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Password reset error:', error);
-      setError(getErrorMessage(error.code));
+      setError(getErrorMessage((error as { code?: string })?.code || 'unknown'));
     } finally {
       setLoading(false);
     }
@@ -231,7 +231,7 @@ export default function LoginPage() {
 
           <div className="text-center">
             <p className="text-sm text-gray-400">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <Link href="/auth/signup" className="font-medium text-blue-400 hover:text-blue-300">
                 Sign up for free
               </Link>

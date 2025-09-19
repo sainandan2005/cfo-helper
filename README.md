@@ -1,36 +1,180 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CFO Helper 📊
 
-## Getting Started
+A comprehensive financial forecasting and scenario planning SaaS platform built with Next.js, Firebase Authentication, and AI-powered insights.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Financial Forecasting**: Interactive financial planning with real-time calculations
+- **AI-Powered Insights**: Gemini AI integration for financial analysis and recommendations
+- **Scenario Planning**: Create and compare multiple financial scenarios
+- **Professional Dashboard**: Clean, dark-themed UI with comprehensive navigation
+- **PDF Report Generation**: Export detailed financial reports
+- **User Authentication**: Firebase Auth with Google Sign-In and email/password
+- **Responsive Design**: Mobile-friendly interface built with Tailwind CSS
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Styling**: Tailwind CSS 4
+- **Authentication**: Firebase Auth
+- **AI Integration**: Google Gemini API
+- **Charts**: Chart.js with React Chart.js 2
+- **PDF Generation**: jsPDF with html2canvas
+- **Build Tool**: Turbopack
+
+## 📦 Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/cfo-helper.git
+   cd cfo-helper
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   ```
+
+4. **Configure your environment variables in `.env.local`**
+   ```env
+   # Gemini AI API Key
+   GEMINI_API_KEY=your_gemini_api_key_here
+
+   # Firebase Configuration
+   NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+   NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your_measurement_id
+   ```
+
+5. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+6. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 🔧 Firebase Setup
+
+1. **Create a Firebase project** at [Firebase Console](https://console.firebase.google.com)
+
+2. **Enable Authentication**
+   - Go to Authentication → Sign-in method
+   - Enable Email/Password and Google providers
+   - Add your domain to authorized domains
+
+3. **Get your Firebase config**
+   - Go to Project Settings → General
+   - Add a web app and copy the config values
+   - Update your `.env.local` file
+
+## 🤖 AI Features Setup
+
+1. **Get Gemini API Key**
+   - Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - Create an API key
+   - Add it to your `.env.local` file
+
+## 📁 Project Structure
+
+```
+cfo-helper/
+├── src/
+│   ├── app/                 # Next.js app directory
+│   │   ├── auth/           # Authentication pages
+│   │   ├── dashboard/      # Dashboard pages
+│   │   ├── api/            # API routes
+│   │   └── ...
+│   ├── components/         # React components
+│   ├── contexts/          # React contexts
+│   ├── hooks/             # Custom hooks
+│   ├── lib/               # Utility libraries
+│   ├── types/             # TypeScript types
+│   └── utils/             # Utility functions
+├── public/                # Static assets
+└── ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Key Components
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **AuthContext**: Firebase authentication management
+- **DashboardHeader**: Main navigation and user menu
+- **AIAssistant**: AI-powered financial advisor
+- **AIScenarioGenerator**: Scenario planning with AI
+- **FinancialHealthScore**: Real-time financial scoring
+- **ForecastChart**: Interactive financial charts
+- **ReportModal**: PDF report generation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Deployment
 
-## Learn More
+### Vercel (Recommended)
 
-To learn more about Next.js, take a look at the following resources:
+1. **Connect your GitHub repository to Vercel**
+2. **Add environment variables in Vercel dashboard**
+3. **Deploy automatically on push to main branch**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Other Platforms
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The app can be deployed to any platform that supports Next.js:
+- Netlify
+- Railway
+- AWS Amplify
+- Google Cloud Platform
 
-## Deploy on Vercel
+## 📝 Available Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔐 Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `GEMINI_API_KEY` | Google Gemini AI API key | Yes |
+| `NEXT_PUBLIC_FIREBASE_API_KEY` | Firebase API key | Yes |
+| `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN` | Firebase auth domain | Yes |
+| `NEXT_PUBLIC_FIREBASE_PROJECT_ID` | Firebase project ID | Yes |
+| `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET` | Firebase storage bucket | Yes |
+| `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID` | Firebase messaging sender ID | Yes |
+| `NEXT_PUBLIC_FIREBASE_APP_ID` | Firebase app ID | Yes |
+| `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID` | Firebase measurement ID | Optional |
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Built with [Next.js](https://nextjs.org/)
+- Powered by [Firebase](https://firebase.google.com/)
+- AI features by [Google Gemini](https://deepmind.google/technologies/gemini/)
+- UI components styled with [Tailwind CSS](https://tailwindcss.com/)
+
+## 📞 Support
+
+If you have any questions or need help, please open an issue or contact the development team.
+
+---
+
+**CFO Helper** - Empowering financial decision-making with AI-driven insights 🚀
